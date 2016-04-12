@@ -1,5 +1,5 @@
 {
-  "name": "qodeboy/mailman",
+  "name": "qodeboy/laravel-mailman",
   "autoload": {
     "psr-4": {
       "Qodeboy\\Mailman\\": "src/"
