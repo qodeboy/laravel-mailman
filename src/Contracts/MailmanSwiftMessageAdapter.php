@@ -5,9 +5,7 @@ namespace Qodeboy\Mailman\Contracts;
 use Swift_Mime_Message;
 
 /**
- * Interface MailmanSwiftMessageAdapter
- *
- * @package Qodeboy\Mailman\Contracts
+ * Interface MailmanSwiftMessageAdapter.
  */
 interface MailmanSwiftMessageAdapter
 {
@@ -16,89 +14,88 @@ interface MailmanSwiftMessageAdapter
      *
      * @param \Swift_Mime_Message $message
      */
-    function __construct(Swift_Mime_Message $message);
-    
+    public function __construct(Swift_Mime_Message $message);
+
     /**
      * Get message status (dropped/allowed).
-     * 
+     *
      * @return mixed
      */
-    function getStatus();
-    
+    public function getStatus();
+
     /**
      * Get Swift_Mime_Message ID.
-     * 
+     *
      * @return mixed
      */
-    function getId();
-    
+    public function getId();
+
     /**
      * Get Swift_Mime_Message Content-Type.
-     * 
+     *
      * @return mixed
      */
-    function getContentType();
-    
+    public function getContentType();
+
     /**
      * Swift_Mime_Message From.
-     * 
+     *
      * @return mixed
      */
-    function getFrom();
-    
+    public function getFrom();
+
     /**
      * Get Swift_Mime_Message To.
      * @return mixed
      */
-    function getTo();
-    
+    public function getTo();
+
     /**
      * Get Swift_Mime_Message Reply-To.
-     * 
+     *
      * @return mixed
      */
-    function getReplyTo();
-    
+    public function getReplyTo();
+
     /**
      * Get Swift_Mime_Message CC.
-     * 
+     *
      * @return mixed
      */
-    function getCc();
-    
+    public function getCc();
+
     /**
      * Get Swift_Mime_Message BCC.
-     * 
+     *
      * @return mixed
      */
-    function getBcc();
-    
+    public function getBcc();
+
     /**
      * Get Swift_Mime_Message Subject.
-     * 
+     *
      * @return mixed
      */
-    function getSubject();
-    
+    public function getSubject();
+
     /**
      * Get Swift_Mime_Message Body.
-     * 
+     *
      * @return mixed
      */
-    function getBody();
-    
+    public function getBody();
+
     /**
      * Get Swift_Mime_Message Contents.
-     * 
+     *
      * @return mixed
      */
-    function toString();
-    
+    public function toString();
+
     /**
      * Get original Swift_Mime_Message.
-     * 
+     *
      * @return Swift_Mime_Message
      */
-    function getSwiftMessage();
-    
+    public function getSwiftMessage();
 }

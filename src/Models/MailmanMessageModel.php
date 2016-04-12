@@ -5,9 +5,7 @@ namespace Qodeboy\Mailman\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class MailMessageModel
- *
- * @package Qodeboy\Mailman\Models
+ * Class MailMessageModel.
  */
 class MailmanMessageModel extends Model
 {
@@ -15,7 +13,7 @@ class MailmanMessageModel extends Model
      * {@inheritdoc}
      */
     protected $table;
-    
+
     /**
      * {@inheritdoc}
      */
@@ -32,7 +30,7 @@ class MailmanMessageModel extends Model
         'body',
         'instance',
     ];
-    
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -45,7 +43,7 @@ class MailmanMessageModel extends Model
         'cc'       => 'json',
         'bcc'      => 'json',
     ];
-    
+
     /**
      * {@inheritdoc}
      */
@@ -54,7 +52,7 @@ class MailmanMessageModel extends Model
         $this->table = config('mailman.storage.database.table');
         parent::__construct($attributes);
     }
-    
+
     /**
      * Set instance attribute.
      *
@@ -64,7 +62,7 @@ class MailmanMessageModel extends Model
     {
         $this->attributes['instance'] = serialize($value);
     }
-    
+
     /**
      * Get instance attribute.
      *

@@ -6,9 +6,7 @@ use Qodeboy\Mailman\Contracts\MailmanSwiftMessageAdapter;
 use Qodeboy\Mailman\Models\MailmanMessageModel;
 
 /**
- * Class MailmanDatabaseLogger
- *
- * @package Qodeboy\Mailman\Logger
+ * Class MailmanDatabaseLogger.
  */
 class MailmanDatabaseLogger extends AbstractMailmanLogger
 {
@@ -24,7 +22,7 @@ class MailmanDatabaseLogger extends AbstractMailmanLogger
         $messageInfo = $this->getMessageInfo($message);
         MailmanMessageModel::create($messageInfo);
     }
-    
+
     /**
      * Get basic information from Swift_Mime_Message
      * for logging purposes.
