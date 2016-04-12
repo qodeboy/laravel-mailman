@@ -12,7 +12,7 @@
 Begin by installing the package through Composer. Run the following command in your terminal:
 
 ```bash
-composer require qodeboy/laravel-mailman
+composer require qodeboy/laravel-mailman "5.2.*"
 ```
 
 Once composer is done, add the package service provider in the providers array in `config/app.php`:

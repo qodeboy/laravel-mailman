@@ -50,6 +50,10 @@ class MailmanTransport extends Transport
                 $mailmanMessage->allow();
             }
         }
+        else
+        {
+            $mailmanMessage->allow();
+        }
 
         if (config('mailman.log.enabled')) {
             $logger = app('mailman.logger');
