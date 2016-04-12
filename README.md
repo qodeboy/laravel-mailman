@@ -3,6 +3,7 @@
 [![Packagist](https://img.shields.io/packagist/v/qodeboy/laravel-mailman.svg?maxAge=2592000?style=flat-square)](https://packagist.org/packages/qodeboy/laravel-mailman)
 [![Packagist](https://img.shields.io/packagist/dt/qodeboy/laravel-mailman.svg?maxAge=2592000?style=flat-square)](https://packagist.org/packages/qodeboy/laravel-mailman)
 [![StyleCI](https://styleci.io/repos/56073823/shield)](https://styleci.io/repos/56073823)
+[![VersionEye](https://www.versioneye.com/user/projects/570d23fafcd19a0039f16af5/badge.svg?style=flat)](https://www.versioneye.com/user/projects/570d23fafcd19a0039f16af5?child=summary)
 
 "Mailman" mail driver for Laravel 5.2+ which allows email delivery to be restricted by environment but allowed for specific recipients.
 
