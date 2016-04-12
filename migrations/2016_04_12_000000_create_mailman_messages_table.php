@@ -22,7 +22,7 @@ class CreateMailmanMessagesTable extends Migration
 
             $table->mediumText('from', 512);
             $table->mediumText('to', 512);
-            $table->mediumText('reply_to', 512);
+            $table->mediumText('reply_to', 512)->nullable();
 
             $table->mediumText('cc')->nullable();
             $table->mediumText('bcc')->nullable();
