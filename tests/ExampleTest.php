@@ -1,8 +1,9 @@
 <?php
 
-namespace Qodeboy\Mailman\Tests;
-
-class ExampleTest extends \PHPUnit_Framework_TestCase
+class ExampleTest extends Orchestra\Testbench\TestCase
 {
-  
+    public function testTrueIsTrue()
+    {
+        $this->assertTrue(true);
+    }
 }
