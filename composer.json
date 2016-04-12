@@ -1,5 +1,6 @@
 {
   "name": "qodeboy/laravel-mailman",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "Qodeboy\\Mailman\\": "src/"
