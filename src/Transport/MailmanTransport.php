@@ -49,9 +49,7 @@ class MailmanTransport extends Transport
             if (count($recipientsDiff) === 0) {
                 $mailmanMessage->allow();
             }
-        }
-        else
-        {
+        } else {
             $mailmanMessage->allow();
         }
 
