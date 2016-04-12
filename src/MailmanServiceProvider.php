@@ -18,14 +18,14 @@ class MailmanServiceProvider extends MailServiceProvider
     public function boot()
     {
         $this->publishes([
-          __DIR__ . '/../config/mailman.php' => config_path('mailman.php'),
+          __DIR__.'/../config/mailman.php' => config_path('mailman.php'),
         ]);
 
         $this->publishes([
-            __DIR__ . '/../migrations/2016_04_12_000000_create_mailman_messages_table.php' => base_path('database/migrations/2016_04_12_000000_create_mailman_messages_table.php'),
+            __DIR__.'/../migrations/2016_04_12_000000_create_mailman_messages_table.php' => base_path('database/migrations/2016_04_12_000000_create_mailman_messages_table.php'),
         ]);
     }
-    
+
     /**
      * Register any package services.
      *
@@ -34,12 +34,12 @@ class MailmanServiceProvider extends MailServiceProvider
     public function register()
     {
         parent::register();
-        
+
         $this->mergeConfigFrom(
-          __DIR__ . '/../config/mailman.php', 'mailman'
+          __DIR__.'/../config/mailman.php', 'mailman'
         );
     }
-    
+
     /**
      * Register the Swift Mailer instance.
      *
@@ -47,29 +47,27 @@ class MailmanServiceProvider extends MailServiceProvider
      */
     public function registerSwiftMailer()
     {
-        if($this->app['config']['mail.driver'] == 'mailman')
-        {
+        if ($this->app['config']['mail.driver'] == 'mailman') {
             $this->registerMailmanSwiftMailer();
             $this->registerMailmanLogger();
-        }
-        else
-        {
+        } else {
             parent::registerSwiftMailer();
         }
     }
-    
+
     /**
      * Register Mailman Logger.
      */
-    public function registerMailmanLogger() {
+    public function registerMailmanLogger()
+    {
         $this->app->singleton('mailman.logger', function ($app) {
             $storageAdapter = $app['config']['mailman']['log']['storage'];
 
-            if(!in_array($storageAdapter, ['database', 'filesystem'])) {
+            if (! in_array($storageAdapter, ['database', 'filesystem'])) {
                 throw new \RuntimeException("Invalid log storage adapter was supplied! Adapter \"{$storageAdapter}\" is not supported!");
             }
 
-            switch($storageAdapter) {
+            switch ($storageAdapter) {
                 case 'filesystem':
                     return new MailmanFilesystemLogger();
 
@@ -79,7 +77,7 @@ class MailmanServiceProvider extends MailServiceProvider
             }
         });
     }
-    
+
     /**
      * Register the Mailman Swift Mailer instance.
      *
@@ -87,13 +85,10 @@ class MailmanServiceProvider extends MailServiceProvider
      */
     protected function registerMailmanSwiftMailer()
     {
-        $this->app['swift.mailer'] = $this->app->share(function($app)
-        {
+        $this->app['swift.mailer'] = $this->app->share(function ($app) {
             return new Swift_Mailer(
               new MailmanTransport($app)
             );
         });
     }
-    
-    
 }

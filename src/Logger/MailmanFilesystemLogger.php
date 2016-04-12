@@ -6,9 +6,7 @@ use Illuminate\Filesystem\Filesystem;
 use Qodeboy\Mailman\Contracts\MailmanSwiftMessageAdapter;
 
 /**
- * Class MailmanFilesystemLogger
- *
- * @package Qodeboy\Mailman\Logger
+ * Class MailmanFilesystemLogger.
  */
 class MailmanFilesystemLogger extends AbstractMailmanLogger
 {
@@ -18,14 +16,14 @@ class MailmanFilesystemLogger extends AbstractMailmanLogger
      * @var string
      */
     protected $storagePath;
-    
+
     /**
      * FileSystem adapter.
      *
      * @var Filesystem
      */
     protected $fileSystem;
-    
+
     /**
      * MailmanFilesystemLogger constructor.
      */
@@ -34,7 +32,7 @@ class MailmanFilesystemLogger extends AbstractMailmanLogger
         $this->storagePath = config('mailman.storage.filesystem.path');
         $this->fileSystem = app(Filesystem::class);
     }
-    
+
     /**
      * Log given Swift_Mime_Message email message.
      *
@@ -45,18 +43,18 @@ class MailmanFilesystemLogger extends AbstractMailmanLogger
     public function log(MailmanSwiftMessageAdapter $message)
     {
         $this->prepareStorage($message);
-        
+
         $this->fileSystem->put(
-            $this->getMessageLogFilePath($message) . '.html',
+            $this->getMessageLogFilePath($message).'.html',
             $this->getMessageHTMLContent($message)
         );
-        
+
         $this->fileSystem->put(
-            $this->getMessageLogFilePath($message) . '.eml',
+            $this->getMessageLogFilePath($message).'.eml',
             $this->getMessageEMLContent($message)
         );
     }
-    
+
     /**
      * Generate a human readable HTML comment with message info.
      *
@@ -79,7 +77,7 @@ class MailmanFilesystemLogger extends AbstractMailmanLogger
             $message->getSubject()
         );
     }
-    
+
     /**
      * Get the HTML content for the log file.
      *
@@ -90,10 +88,10 @@ class MailmanFilesystemLogger extends AbstractMailmanLogger
     protected function getMessageHTMLContent(MailmanSwiftMessageAdapter $message)
     {
         $messageInfo = $this->getMessageInfo($message);
-        
-        return $messageInfo . $message->getBody();
+
+        return $messageInfo.$message->getBody();
     }
-    
+
     /**
      * Get the EML content for the log file.
      *
@@ -105,7 +103,7 @@ class MailmanFilesystemLogger extends AbstractMailmanLogger
     {
         return $message->toString();
     }
-    
+
     /**
      * Get the path to the email log file.
      *
@@ -117,10 +115,10 @@ class MailmanFilesystemLogger extends AbstractMailmanLogger
     {
         $messageLogDirectory = $this->getMessageLogDirectoryPath($message);
         $messageLogFileName = str_replace(['@', '.'], ['_at_', '_'], $message->getId());
-        
-        return $messageLogDirectory . '/' . str_slug($messageLogFileName);
+
+        return $messageLogDirectory.'/'.str_slug($messageLogFileName);
     }
-    
+
     /**
      * Get the path to the email log directory.
      *
@@ -131,10 +129,10 @@ class MailmanFilesystemLogger extends AbstractMailmanLogger
     protected function getMessageLogDirectoryPath(MailmanSwiftMessageAdapter $message)
     {
         list($messageId) = explode('@', $message->getId());
-        
-        return storage_path($this->storagePath . '/' . $messageId);
+
+        return storage_path($this->storagePath.'/'.$messageId);
     }
-    
+
     /**
      * Create required directories for logging.
      *
@@ -143,15 +141,13 @@ class MailmanFilesystemLogger extends AbstractMailmanLogger
     protected function prepareStorage(MailmanSwiftMessageAdapter $message)
     {
         $messageLogStorageDirectory = storage_path($this->storagePath);
-        if(!$this->fileSystem->exists($messageLogStorageDirectory))
-        {
+        if (! $this->fileSystem->exists($messageLogStorageDirectory)) {
             $this->fileSystem->makeDirectory($messageLogStorageDirectory);
-            $this->fileSystem->put($messageLogStorageDirectory . '/.gitignore', "*\n!.gitignore");
+            $this->fileSystem->put($messageLogStorageDirectory.'/.gitignore', "*\n!.gitignore");
         }
-        
+
         $messageLogDirectory = $this->getMessageLogDirectoryPath($message);
-        if(!$this->fileSystem->exists($messageLogDirectory))
-        {
+        if (! $this->fileSystem->exists($messageLogDirectory)) {
             $this->fileSystem->makeDirectory($messageLogDirectory);
         }
     }

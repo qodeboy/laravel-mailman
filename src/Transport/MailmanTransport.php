@@ -26,7 +26,7 @@ class MailmanTransport extends Transport
     {
         $this->app = $app;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -36,8 +36,7 @@ class MailmanTransport extends Transport
         $this->beforeSendPerformed($message);
 
         // Deny email delivery if environment is not allowed in the config
-        if(!in_array($this->app->environment(), config('mailman.delivery.environments')))
-        {
+        if (! in_array($this->app->environment(), config('mailman.delivery.environments'))) {
             $mailmanMessage->deny();
 
             $recipients = array_keys($mailmanMessage->getTo());
@@ -47,20 +46,17 @@ class MailmanTransport extends Transport
 
             // If all recipients are allowed to receive emails
             // from denied environments - allow email delivery.
-            if(count($recipientsDiff) === 0)
-            {
+            if (count($recipientsDiff) === 0) {
                 $mailmanMessage->allow();
             }
         }
 
-        if(config('mailman.log.enabled'))
-        {
+        if (config('mailman.log.enabled')) {
             $logger = app('mailman.logger');
             $logger->log($mailmanMessage);
         }
-        
-        if($mailmanMessage->allowed())
-        {
+
+        if ($mailmanMessage->allowed()) {
             $transportManager = new TransportManager($this->app);
             $transport = $transportManager->driver(config('mailman.delivery.driver'));
 

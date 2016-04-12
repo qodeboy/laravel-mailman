@@ -19,7 +19,7 @@ return [
          * List of environments which allowed to send emails.
          */
         'environments' => [
-            'production'
+            'production',
         ],
 
         /*
@@ -62,7 +62,7 @@ return [
          * Relative to the storage_path().
          */
         'filesystem' => [
-            'path' => 'mailman'
-        ]
+            'path' => 'mailman',
+        ],
     ],
 ];

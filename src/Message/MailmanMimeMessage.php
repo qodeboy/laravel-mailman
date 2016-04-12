@@ -9,7 +9,7 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
 {
     const STATUS_ALLOWED = 'allowed';
     const STATUS_DENIED = 'denied';
-    
+
     /**
      * Swift_Mime_Message instance.
      *
@@ -25,7 +25,7 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
     protected $status;
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function __construct(Swift_Mime_Message $message)
     {
@@ -33,7 +33,7 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getStatus()
     {
@@ -41,7 +41,7 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -49,7 +49,7 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getContentType()
     {
@@ -57,7 +57,7 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getFrom()
     {
@@ -65,7 +65,7 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getTo()
     {
@@ -73,7 +73,7 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getReplyTo()
     {
@@ -81,7 +81,7 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getCc()
     {
@@ -89,7 +89,7 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getBcc()
     {
@@ -97,7 +97,7 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getSubject()
     {
@@ -105,7 +105,7 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getBody()
     {
@@ -113,32 +113,34 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function toString()
     {
         return $this->message->toString();
     }
-    
+
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getSwiftMessage()
     {
         return $this->message;
     }
-    
+
     /**
      * Mark message as allowed for sending.
      */
-    public function allow() {
+    public function allow()
+    {
         $this->setStatus(self::STATUS_ALLOWED);
     }
-    
+
     /**
      * Mark message as denied for sending.
      */
-    public function deny() {
+    public function deny()
+    {
         $this->setStatus(self::STATUS_DENIED);
     }
 
@@ -147,29 +149,32 @@ class MailmanMimeMessage implements MailmanSwiftMessageAdapter
      *
      * @return bool
      */
-    public function allowed() {
+    public function allowed()
+    {
         return $this->getStatus() === self::STATUS_ALLOWED;
     }
 
     /**
      * Check if message is denied for delivery.
-     * 
+     *
      * @return bool
      */
-    public function denied() {
+    public function denied()
+    {
         return $this->getStatus() === self::STATUS_DENIED;
     }
-    
+
     /**
      * Set message status.
      *
      * @param $status
      */
-    protected function setStatus($status) {
-        if(!in_array($status, ['allowed', 'denied'])) {
+    protected function setStatus($status)
+    {
+        if (! in_array($status, ['allowed', 'denied'])) {
             throw new \RuntimeException('Invalid message status supplied!');
         }
-        
+
         $this->status = $status;
     }
 }
