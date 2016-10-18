@@ -4,9 +4,10 @@ namespace Qodeboy\Mailman\Transport;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Mail\Transport\Transport;
-use Illuminate\Mail\TransportManager;
 use Qodeboy\Mailman\Message\MailmanMimeMessage;
+use Swift_Mailer;
 use Swift_Mime_Message;
+use Swift_Transport;
 
 class MailmanTransport extends Transport
 {
@@ -59,10 +60,10 @@ class MailmanTransport extends Transport
         }
 
         if ($mailmanMessage->allowed()) {
-            $transportManager = new TransportManager($this->app);
-            $transport = $transportManager->driver(config('mailman.delivery.driver'));
+            /** @var Swift_Transport $transport */
+            $transport = $this->app['swift.transport']->driver(config('mailman.delivery.driver'));
 
-            $transport->send($mailmanMessage->getSwiftMessage());
+            with(new Swift_Mailer($transport))->send($mailmanMessage->getSwiftMessage());
         }
     }
 }
