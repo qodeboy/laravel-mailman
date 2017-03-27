@@ -87,7 +87,7 @@ class MailmanServiceProvider extends MailServiceProvider
     {
         $this->registerSwiftTransport();
 
-        $this->app['swift.mailer'] = $this->app->share(function ($app) {
+        $this->app->singleton('swift.mailer', function ($app) {
             return new Swift_Mailer(
               new MailmanTransport($app)
             );
