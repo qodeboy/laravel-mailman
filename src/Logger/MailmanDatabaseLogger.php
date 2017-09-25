@@ -2,8 +2,8 @@
 
 namespace Qodeboy\Mailman\Logger;
 
-use Qodeboy\Mailman\Contracts\MailmanSwiftMessageAdapter;
 use Qodeboy\Mailman\Models\MailmanMessageModel;
+use Qodeboy\Mailman\Contracts\MailmanSwiftMessageAdapter;
 
 /**
  * Class MailmanDatabaseLogger.
