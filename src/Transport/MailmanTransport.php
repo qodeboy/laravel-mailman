@@ -2,12 +2,12 @@
 
 namespace Qodeboy\Mailman\Transport;
 
+use Swift_Mailer;
+use Swift_Transport;
+use Swift_Mime_Message;
 use Illuminate\Foundation\Application;
 use Illuminate\Mail\Transport\Transport;
 use Qodeboy\Mailman\Message\MailmanMimeMessage;
-use Swift_Mailer;
-use Swift_Mime_Message;
-use Swift_Transport;
 
 class MailmanTransport extends Transport
 {

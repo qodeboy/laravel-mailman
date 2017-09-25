@@ -2,11 +2,11 @@
 
 namespace Qodeboy\Mailman;
 
+use Swift_Mailer;
 use Illuminate\Mail\MailServiceProvider;
+use Qodeboy\Mailman\Transport\MailmanTransport;
 use Qodeboy\Mailman\Logger\MailmanDatabaseLogger;
 use Qodeboy\Mailman\Logger\MailmanFilesystemLogger;
-use Qodeboy\Mailman\Transport\MailmanTransport;
-use Swift_Mailer;
 
 class MailmanServiceProvider extends MailServiceProvider
 {

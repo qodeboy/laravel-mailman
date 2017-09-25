@@ -2,8 +2,8 @@
 
 namespace Qodeboy\Mailman\Message;
 
-use Qodeboy\Mailman\Contracts\MailmanSwiftMessageAdapter;
 use Swift_Mime_Message;
+use Qodeboy\Mailman\Contracts\MailmanSwiftMessageAdapter;
 
 class MailmanMimeMessage implements MailmanSwiftMessageAdapter
 {
